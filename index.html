@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <!-- Font Awesome Script -->
+    <script
+      src="https://kit.fontawesome.com/cb34552f69.js"
+      crossorigin="anonymous"
+    ></script>
+    <title>Permission Form| To Date My Daughter</title>
+  </head>
+  <body>
+    <!-- Header -->
+
+    <div class="header-container" id="header-container">
+      <h1 class="header" id="header">
+        <i class="fas fa-align-left"></i> Permission To Date My Daughter
+      </h1>
+      <p class="header-note" id="header-note">
+        ** Note: Form is to be completed at least 21 days prior to date **
+      </p>
+    </div>
+
+    <!-- Form Container -->
+
+    <div class="container">
+      <form>
+        <!-- Personal Details -->
+
+        <div class="personal-details-container" id="personal-details-container">
+          <h3 class="details-header" id="details-header">Personal Details</h3>
+
+          <!-- Text Inputs -->
+
+          <section class="text-inputs" id="text-inputs">
+            <label for="name">Name</label><br />
+            <input
+              type="text"
+              name="name"
+              id="name"
+              placeholder="add name"
+            /><br />
+            <label for="email">Email</label><br />
+            <input type="email" id="email" placeholder="add email" /><br />
+            <label for="address">Address</label><br />
+            <input type="text" id="address" placeholder="add address" /><br />
+            <label for="phone">Phone Number</label><br />
+            <input type="tel" id="phone" placeholder="add phone number" /><br />
+            <label for="iq">IQ</label><br />
+            <input
+              type="number"
+              min="50"
+              max="150"
+              id="iq"
+              class="block"
+              placeholder="add IQ"
+            /><br />
+          </section>
+
+          <!-- Radios -->
+
+          <section class="radios" id="radios">
+            <p class="gender-heading" id="gender-heading">Gender</p>
+            <input type="radio" id="male" name="gender" value="Male" />
+            <label for="male">Male</label><br />
+            <input type="radio" id="female" name="gender" value="Female" />
+            <label for="female">Female</label><br />
+            <input type="radio" id="other" name="gender" value="Other" />
+            <label for="other">Other</label>
+          </section>
+
+          <!-- Date Picker -->
+
+          <section class="select" id="select">
+            <label for="date-night">Date of Proposed Outing</label>
+            <input type="date" id="date-night" name="date-night" />
+          </section>
+        </div>
+        <div
+          class="personal-attributes-container"
+          id="personal-attributes-container"
+        >
+          <!-- Checkboxes -->
+
+          <section class="personal-attributes" id="personal-attributes">
+            <p class="checkboxes-heading" id="checkboxes-heading">
+              Check <span>all that apply</span>
+            </p>
+            <input
+              type="checkbox"
+              id="tattoos"
+              name="tattoos"
+              value="I have tattoos and/or piercings"
+            />
+            <label for="tattoos"> I have tattoos and/or piercings</label><br />
+            <input
+              type="checkbox"
+              id="too-old"
+              name="too-old"
+              value="I am more than 2 years older than your daughter"
+            />
+            <label for="too-old">
+              I am more than 2 years older than your daughter</label
+            ><br />
+            <input
+              type="checkbox"
+              id="van"
+              name="van"
+              value="I own a panel van or V8 ute"
+            />
+            <label for="van"> I own a panel van or V8 ute</label><br />
+            <input
+              type="checkbox"
+              id="job"
+              name="job"
+              value="I work full time"
+            />
+            <label for="job"> I work full time</label><br />
+            <input
+              type="checkbox"
+              id="unemployed"
+              name="unemployed"
+              value="I am unemployed"
+            />
+            <label for="unemployed"> I am unemployed</label><br />
+            <input
+              type="checkbox"
+              id="rich"
+              name="rich"
+              value="My parents are rich"
+            />
+            <label for="rich"> My parents are rich</label><br />
+            <input
+              type="checkbox"
+              id="public-location"
+              name="public-location"
+              value="The date in a well lit public location"
+            />
+            <label for="public-location">
+              Is the date in a well lit public location</label
+            ><br />
+          </section>
+        </div>
+
+        <!-- Affiliations -->
+
+        <div class="affiliations-container" id="affiliations-container">
+          <section class="affiliations" id="affiliations">
+            <div>
+              <label for="political-persuasion">Political Persuasion</label>
+              <select name="political-persuasion" id="political-persuasion">
+                <option value="empty-party">Select One</option>
+                <option value="Democratic">Democratic Party</option>
+                <option value="Republican">Republican Party</option>
+                <option value="Libertarian">Libertarian Party</option>
+              </select>
+            </div>
+            <div>
+              <label for="education-completed">Education Level Completed</label>
+              <select name="education-completed" id="education-completed">
+                <option value="empty-education">Select One</option>
+                <option value="University">University</option>
+                <option value="High School">High School</option>
+                <option value="GED">GED</option>
+              </select>
+            </div>
+          </section>
+        </div>
+
+        <!-- Essay Section -->
+
+        <div class="essay-container" id="essay-container">
+          <h3 class="essay-header" id="essay-header">Essay Section</h3>
+          <section class="essay" id="essay">
+            <textarea
+              id="text-area-essay"
+              name="text-area-essay"
+              rows="4"
+              cols="50"
+              placeholder="In 50 words or more explain why you want to date my daughter..."
+            ></textarea>
+          </section>
+        </div>
+
+        <!-- Form Submit -->
+
+        <input type="submit" id="submit" class="btn" value="Submit" />
+      </form>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
