@@ -5,28 +5,51 @@ const form = document.querySelector("form"),
   container = document.querySelector(".container"),
   detailsHeader = document.querySelector("#details-header"),
   name = document.querySelector("#name"),
+  nameLabel = document.querySelector('label[for="name"]'),
   email = document.querySelector("#email"),
+  emailLabel = document.querySelector('label[for="email"]'),
   address = document.querySelector("#address"),
+  addressLabel = document.querySelector('label[for="address"]'),
   phone = document.querySelector("#phone"),
+  phoneLabel = document.querySelector('label[for="phone"]'),
   iq = document.querySelector("#iq"),
-  attributes = document.querySelectorAll("input[type=checkbox]"),
+  iqLabel = document.querySelector('label[for="iq"]'),
+  attributes = document.querySelectorAll("input[name='attributes']"),
   genders = document.querySelectorAll("input[name='gender']"),
+  genderHeading = document.querySelector("#gender-heading"),
+  genderLabelMale = document.querySelector('label[for="male"]'),
+  genderLabelFemale = document.querySelector('label[for="female"]'),
+  genderLabelOther = document.querySelector('label[for="other"]'),
   male = document.querySelector("#male"),
   female = document.querySelector("#female"),
   other = document.querySelector("#other"),
   date = document.querySelector("input[type='date']"),
+  dateHeading = document.querySelector("label[for='date-night']"),
+  attributesHeading = document.querySelector("#checkboxes-heading"),
   tattoos = document.querySelector("#tattoos"),
+  tattoosLabel = document.querySelector('label[for="tattoos"]'),
   tooOld = document.querySelector("#too-old"),
+  tooOldLabel = document.querySelector('label[for="too-old"]'),
   van = document.querySelector("#van"),
+  vanLabel = document.querySelector('label[for="van"]'),
   job = document.querySelector("#job"),
+  jobLabel = document.querySelector('label[for="job"]'),
   unemployed = document.querySelector("#unemployed"),
+  unemployedLabel = document.querySelector('label[for="unemployed"]'),
   rich = document.querySelector("#rich"),
+  richLabel = document.querySelector('label[for="rich"]'),
   publicLocation = document.querySelector("#public-location"),
-  emptyParty = document.querySelector("empty-party"),
-  emptyEducation = document.querySelector("empty-education"),
+  publicLocationLabel = document.querySelector('label[for="public-location"]'),
   politicalPersuasion = document.querySelector("#political-persuasion"),
+  politicalPersuasionLabel = document.querySelector(
+    'label[for="political-persuasion"]'
+  ),
   educationCompleted = document.querySelector("#education-completed"),
+  educationCompletedLabel = document.querySelector(
+    'label[for="education-completed"]'
+  ),
   textAreaEssay = document.querySelector("#text-area-essay"),
+  textAreaEssayHeader = document.querySelector("#essay-header"),
   submit = document.querySelector("#submit"),
   suitorSummary = document.querySelector("#suitor-summary")
 
@@ -53,12 +76,13 @@ const onSubmit = (e) => {
     iq.value === "" ||
     selectedGender === "" ||
     date.value === "" ||
-    attributesSelected === [] ||
+    attributesSelected.length === 0 ||
     politicalPersuasion.value === "empty-party" ||
     educationCompleted.value === "empty-education" ||
     textAreaEssay.value === ""
   ) {
     fillFieldsMessage()
+    handleErrors()
     setTimeout(() => {
       returnHeader()
     }, 4000)
@@ -88,6 +112,7 @@ const onSubmit = (e) => {
 // Radio buttons determining gender
 let selectedGender = ""
 const genderCheck = () => {
+  selectedGender = ""
   for (gender of genders) {
     if (gender.checked) {
       selectedGender = gender.value
@@ -98,11 +123,18 @@ const genderCheck = () => {
 // Checkboxes attributes selected
 let attributesSelected = []
 const getAttributesSelected = () => {
+  attributesSelected = []
   for (attribute of attributes) {
     if (attribute.checked) {
       attributesSelected.push(attribute.value)
     }
   }
+}
+
+//  Error header, fill all fields
+const fillFieldsMessage = () => {
+  header.innerHTML = `<i class="fas fa-exclamation-circle"></i> PLEASE FILL ALL OPTIONS`
+  headerContainer.style.backgroundColor = "var(--warningColor)"
 }
 
 // Show successful application submission
@@ -117,15 +149,157 @@ const returnHeader = () => {
   headerContainer.style.backgroundColor = "var(--red)"
 }
 
-//  Fill fields header
-const fillFieldsMessage = () => {
-  header.innerHTML = `<i class="fas fa-exclamation-circle"></i> PLEASE FILL ALL OPTIONS`
-  headerContainer.style.backgroundColor = "var(--warningColor)"
-
-  /*  BUG FIX NEEDED
-      Checkboxes do not act properly when form submission occurs
-      more than once due to user error.  Double entries occur if form is not submitted on first attempt.
-  */
+// Error handling in UI
+const handleErrors = () => {
+  // Name field
+  if (name.value === "") {
+    detailsHeader.classList.add("errorText")
+    detailsHeader.innerText = "Please Complete All Details Fields"
+    name.classList.add("error")
+    nameLabel.classList.add("errorText")
+    nameLabel.innerText = "Please Enter Your Name"
+  } else {
+    detailsHeader.classList.remove("errorText")
+    detailsHeader.innerText = "Personal Details"
+    name.classList.remove("error")
+    nameLabel.classList.remove("errorText")
+    nameLabel.innerText = "Name"
+  }
+  // Email field
+  if (email.value === "") {
+    detailsHeader.classList.add("errorText")
+    detailsHeader.innerText = "Please Complete All Details Fields"
+    email.classList.add("error")
+    emailLabel.classList.add("errorText")
+    emailLabel.innerText = "Please Enter Your Email"
+  } else {
+    detailsHeader.classList.remove("errorText")
+    detailsHeader.innerText = "Personal Details"
+    email.classList.remove("error")
+    emailLabel.classList.remove("errorText")
+    emailLabel.innerText = "Email"
+  }
+  // Address field
+  if (address.value === "") {
+    detailsHeader.classList.add("errorText")
+    detailsHeader.innerText = "Please Complete All Details Fields"
+    address.classList.add("error")
+    addressLabel.classList.add("errorText")
+    addressLabel.innerText = "Please Enter Your Address"
+  } else {
+    detailsHeader.classList.remove("errorText")
+    detailsHeader.innerText = "Personal Details"
+    address.classList.remove("error")
+    addressLabel.classList.remove("errorText")
+    addressLabel.innerText = "Address"
+  }
+  // Phone number field
+  if (phone.value === "") {
+    detailsHeader.classList.add("errorText")
+    detailsHeader.innerText = "Please Complete All Details Fields"
+    phone.classList.add("error")
+    phoneLabel.classList.add("errorText")
+    phoneLabel.innerText = "Please Enter Your Phone Number"
+  } else {
+    detailsHeader.classList.remove("errorText")
+    detailsHeader.innerText = "Personal Details"
+    phone.classList.remove("error")
+    phoneLabel.classList.remove("errorText")
+    phoneLabel.innerText = "Phone Number"
+  }
+  // IQ field
+  if (iq.value === "") {
+    detailsHeader.classList.add("errorText")
+    detailsHeader.innerText = "Please Complete All Details Fields"
+    iq.classList.add("error")
+    iqLabel.classList.add("errorText")
+    iqLabel.innerText = "Please Enter Your IQ"
+  } else {
+    detailsHeader.classList.remove("errorText")
+    detailsHeader.innerText = "Personal Details"
+    iq.classList.remove("error")
+    iqLabel.classList.remove("errorText")
+    iqLabel.innerText = "IQ"
+  }
+  // Radios for gender selection
+  if (selectedGender === "") {
+    genderLabelMale.classList.add("errorText")
+    genderLabelFemale.classList.add("errorText")
+    genderLabelOther.classList.add("errorText")
+    genderHeading.innerText = "Please Select A Gender Option"
+    genderHeading.classList.add("errorText")
+  } else {
+    genderLabelMale.classList.remove("errorText")
+    genderLabelFemale.classList.remove("errorText")
+    genderLabelOther.classList.remove("errorText")
+    genderHeading.innerText = "Gender"
+    genderHeading.classList.remove("errorText")
+  }
+  // Date input for proposed date night
+  if (date.value === "") {
+    date.classList.add("error")
+    date.classList.add("errorText")
+    dateHeading.innerText = "Please Select A Date"
+    dateHeading.classList.add("errorText")
+  } else {
+    date.classList.remove("error")
+    date.classList.remove("errorText")
+    dateHeading.innerText = "Date of Proposed Outing"
+    dateHeading.classList.remove("errorText")
+  }
+  // Checkboxes for selected attributes
+  if (attributesSelected.length === 0) {
+    attributesHeading.innerText = "Please Select At Least One Box"
+    attributesHeading.classList.add("errorText")
+    tattoosLabel.classList.add("errorText")
+    tooOldLabel.classList.add("errorText")
+    vanLabel.classList.add("errorText")
+    jobLabel.classList.add("errorText")
+    unemployedLabel.classList.add("errorText")
+    richLabel.classList.add("errorText")
+    publicLocationLabel.classList.add("errorText")
+  } else {
+    attributesHeading.innerHTML = "Check <span>ALL THAT APPLY<span>"
+    attributesHeading.classList.remove("errorText")
+    tattoosLabel.classList.remove("errorText")
+    tooOldLabel.classList.remove("errorText")
+    vanLabel.classList.remove("errorText")
+    jobLabel.classList.remove("errorText")
+    unemployedLabel.classList.remove("errorText")
+    richLabel.classList.remove("errorText")
+    publicLocationLabel.classList.remove("errorText")
+  }
+  // Political persuasion selection
+  if (politicalPersuasion.value === "empty-party") {
+    politicalPersuasion.classList.add("error")
+    politicalPersuasionLabel.classList.add("errorText")
+    politicalPersuasionLabel.innerText =
+      "Please Select Your Political Persuasion"
+  } else {
+    politicalPersuasion.classList.remove("error")
+    politicalPersuasionLabel.classList.remove("errorText")
+    politicalPersuasionLabel.innerText = "Political Persuasion"
+  }
+  // Education level completed selection
+  if (educationCompleted.value === "empty-education") {
+    educationCompleted.classList.add("error")
+    educationCompletedLabel.classList.add("errorText")
+    educationCompletedLabel.innerText = "Please Select Your Completed Education"
+  } else {
+    educationCompleted.classList.remove("error")
+    educationCompletedLabel.classList.remove("errorText")
+    educationCompletedLabel.innerText = "Education Level Completed"
+  }
+  // Essay
+  if (textAreaEssay.value === "") {
+    textAreaEssayHeader.innerText = "Please Write Your Essay Here"
+    textAreaEssayHeader.classList.add("errorText")
+    textAreaEssay.classList.add("error")
+  } else {
+    textAreaEssayHeader.innerText = "Essay Section"
+    textAreaEssayHeader.classList.remove("errorText")
+    textAreaEssay.classList.remove("error")
+  }
 }
 
 // Print suitors in LS
